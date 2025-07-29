@@ -8,7 +8,7 @@ $(function () {
 
     // 문제 2: 이미지 토글
     $("#p2-toggleBtn").click(function () {
-        // 이미지 하나를 img 폴더 내에 저장 후 이미지 변경 <img src >에서
+        // 이미지 하나를 img 폴더 내에 저장 후 이미지 변경 ; <img src >에서
         // HINT: #p2-myImage 요소를 .toggle()을 사용해 숨기거나 보이게 하세요. (속도를 500으로 줘보세요)
         $("p2-myImage").toggle(); //fadeOut(500).fadeIn(500)
     });
@@ -76,6 +76,19 @@ $(function () {
         // HINT: .animate() 메서드를 사용하세요.
         // 첫 번째 인자로 { width: "300px", opacity: 0.5 } 형태의 CSS 객체를,
         // 두 번째 인자로 시간(1500)을 전달합니다.
-        $("p10-myBox");
+        // .animate()는 사용자 지정 메서드
+        // .animate({css속성정의}, 시간, 콜백함수)   *콜백함수: 시간 이외의 어떤 작업을 할 것인지 작성
+        $("#p10-myBox").animate(
+            {
+                width: "300px",
+                // left: "300px",
+                // top: 300,
+                opacity: 0.5,
+            },
+            1500, // 1.5초
+            function () {
+                $("#p10-myBox").css("backgroundColor", "red");
+            }
+        );
     });
 });
