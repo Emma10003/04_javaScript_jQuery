@@ -17,6 +17,7 @@ $(function () {
                     $("#result").html(`
                         ${data[i].name} - ${data[i].price}원
                         `);
+                    break;
                 } else {
                     $("#result").html(`과일이 존재하지 않습니다.`);
                 }
