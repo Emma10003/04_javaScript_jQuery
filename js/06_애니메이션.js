@@ -72,4 +72,31 @@ $(function () {
     $("#flipCard").click(function () {
         $(this).toggleClass("flipped");
     });
+    // ===================================================================================
+    // 5. 드롭다운 메뉴
+    /*
+    .hover()    : 마우스가 요소로 다가왔을 때 메서드(행동=기능)
+    .active()   : 마우스로 요소를 선택했을 때 메서드(행동=기능)
+    $(선택자).hover(
+        
+        function(){
+            // 기능 1번) 마우스가 요소 위에 올라갔을 때 실행할 기능
+        },
+        
+        function(){
+            // 기능 2번) 마우스가 요소에서 벗어났을 때 실행할 기능
+        }
+    )
+
+    $(선택자).hover(mouseEnter함수, mouseLeave함수);  // 위의 형식을 더 많이 씀.
+    */
+    $(".dropdown").hover(
+        // dropdown 클래스의 전체 메뉴들을 보여줘야 하기 때문에 .dropdown
+        function () {
+            $("#dropdownMenu").slideDown(200);
+        },
+        function () {
+            $("#dropdownMenu").slideUp(200);
+        }
+    );
 });
