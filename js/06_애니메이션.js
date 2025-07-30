@@ -27,18 +27,49 @@ $(function () {
             $("#modalOverlay").fadeOut();
         }
     });
-
-    // 2. 탭 멘
+    // ===================================================================================
+    // 2. 탭 메뉴
     $(".tab-btn").click(function () {
         // data-tab 속성값을 가져와서
-        const targetTab = $("this").data("tab");
+        const targetTab = $(this).data("tab"); // data-tab이 tab인 요소 모두 선택
         // 모든 탭 버튼에서 active 클래스를 제거한 후 현재 클릭한 버튼에만
         // active 추가
-        $(".tab-btn").removeClass("active");
+        $(".tab-btn").removeClass("active"); // 우선 tab1에 있는 active 클래스 제거
         $(this).addClass("active"); // 누른 탭에만 active 클래스를 추가하겠다
         // 2. 모든 .tab-content를 slideUp 하고, 해당 탭만 slideDown
         // 메서드  .slideUp()   .slideDown 기본 속도 400ms
-        $(".tab-content").slideUp();
+        $(".tab-content").slideUp(); // tab-content를 우선 모두 올림 처리
         $("#" + targetTab).slideDown();
+        // targetTab은
+    });
+    // ===================================================================================
+    // 3. 프로그레스 바
+    $("#startProgress").click(function () {
+        $("#progressBar").animate(
+            {
+                // 클릭이 실행되면 가로 100% 채우고
+                // 2초 후 무언가를 할 것이다. -> 이 부분(시간, 기능function)은 필수가 X.
+                width: "100%",
+            },
+            2000,
+            function () {
+                // 2000 = 2초 후 실행할 기능
+                // 기존에 progressBar 내부에 %만 작성되어 있는 텍스트를
+                // width 100% 로 만들고 나면 텍스트를 100%로 교체
+                $("#progressBar").text("100%");
+            }
+        );
+
+        // #resetProgress 클릭했을 때
+        // css(속성명 = "width", 속성값 = "0%") 만들기
+        // text("0%")
+        $("#resetProgress").click(function () {
+            $("#progressBar").css("width", "0%").text("0%");
+        });
+    });
+    // ===================================================================================
+    // 4. 3D 카드 플립 효과
+    $("#flipCard").click(function () {
+        $(this).toggleClass("flipped");
     });
 });
