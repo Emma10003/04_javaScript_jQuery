@@ -7,14 +7,17 @@
     // 이제는 함수를 따로 정의하고, .click() 안에는 정의된 함수를 넣어준다!
 
 // ==================================================================================
-// 문제 1: 기본 텍스트 데이터 가져오기
-// https://jsonplaceholder.typicode.com/posts/1
-
-// '게시물 제목 가져오기' 버튼(=id가 btn1인 버튼) 클릭했을 때 문제1번기능() 호출
+// 버튼 클릭 시 함수 호출
 $(function(){
     $("#btn1").click(문제1번기능); 
+    $("#btn2").click(userInfo);
+    $("#btn3").click(getRandom);
+    $("#btn4").click(getComments);
+    $("#btn5").click(errorFn);
 })
-// 함수 정의
+// ==================================================================================
+// 문제 1: 기본 텍스트 데이터 가져오기
+// https://jsonplaceholder.typicode.com/posts/1
 function 문제1번기능() {
     $.get(
         "https://jsonplaceholder.typicode.com/posts/1", // url 주소
@@ -35,12 +38,6 @@ function 문제1번기능() {
 // 문제 2: 사용자 정보 표시하기
 // https://jsonplaceholder.typicode.com/users
 // https://jsonplaceholder.typicode.com/users/{userId}
-
-// 버튼 클릭 시 함수 호출
-$(function(){
-    $("#btn2").click(userInfo);
-})
-// 함수 정의
 function userInfo(){
     const ui = $("#userId").val(); // 사용자가 작성한 값 -> 숫자 타입
      
@@ -86,12 +83,6 @@ function userInfo(){
 // 문제 3: 랜덤 명언 가져오기
 // https://api.quotable.io/random
 // http://api.quotable.io/random
-
-// 버튼 클릭 시 함수 호출
-$(function(){
-    $("#btn3").click(getRandom);
-})
-// 함수 정의
 function getRandom(){
     // 1. get을 이용해서 데이터 가져올 주소 설정
     $.get('https://api.quotable.io/random')
@@ -116,4 +107,67 @@ function getRandom(){
             `
         )
     )
+}
+// ==================================================================================
+// 문제 4: 댓글 .length 개를 성공적으로 가져왔다 띄워주기
+// https://jsonplaceholder.typicode.com/posts/1/comments
+function getComments(){
+    $.get("https://jsonplaceholder.typicode.com/posts/1/comments")
+    .done(
+        function(data){  // 여기에 data 쓰는 거 잊지 말 것,,
+            $("#result4").html(
+                `
+                <div class="success">
+                    댓글 ${data.length} 개를 성공적으로 불러왔습니다. <br><br>
+                    <strong>첫 번째 댓글 : </strong><br>${data[0].body}
+                </div>
+                `
+            ) // .html
+        } // function
+    ) // .done
+    .fail(
+        function() {
+            $("#result4").html(
+            `
+            <div class="error">
+                댓글을 불러오는 데 실패했습니다.
+            </div>
+            `
+            ) // .html
+        } // function
+        
+    ) // .fail
+}
+// ==================================================================================
+// 문제 5: 에러 처리하기
+// https://jsonplaceholder.typicode.com/posts/999999
+function errorFn(){
+    $.get('https://jsonplaceholder.typicode.com/posts/999999')
+    .done(
+        function(data){
+            $("#result5").html(
+                `
+                <div class="success">
+                    데이터를 성공적으로 가져왔습니다.
+                </div>
+                `
+            ) // .html
+        } // function
+    ) // .done
+    .fail(
+        // error 가 발생했을 때도 매개변수(파라미터) 자리에
+        // data 라는 변수이름을 사용해도 되지만, 개발자 간의 규칙으로
+        // err 나 xhr 과 같은 명칭을 사용해주는 것이 바람직하다
+        function(xhr){
+            $("#result5").html(
+                `
+                <div class="error">
+                에러 발생 ! <br>
+                <strong>상태 코드 : </strong>${xhr.status}<br>
+                <strong>에러메세지 : </strong>${xhr.statusText}<br>
+                </div>
+                `
+            ) // .html
+        } // function
+    ) // .fail
 }
