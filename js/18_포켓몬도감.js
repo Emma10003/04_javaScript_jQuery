@@ -33,6 +33,11 @@ function range(start, end) {
     end - start + 1 = 10 -1 +1 = 10
     -> Array(10) => 10개의 배열을 생성하겠다.
                     근데 이제 소비자가 원하는 페이지의 번호로 끝나는 배열...
+                    ---
+                    아래 pokeInfo(page) 함수에서 range()함수를 호출할 때 변수로 사용되는 startId는
+                    (page-1) * 10 + 1 로 고정되어 있고,
+                    range(startId, startId + 9)로 입력값이 고정되어 있기 때문에
+                    만약에 start 파라미터가 11이라면 end 파라미터는 20으로 고정된다.
     
     .keys() : 키들의 값으로 숫자를 넣겠다. 배열은 0부터 시작  [0,1,2, ... ,7,8,9] 와 같음
     .map(i => i + start) : 시작값 더하기
@@ -50,6 +55,9 @@ function pokeInfo(page) {
     const ids = range(startId, startId + 9)
     console.log("현재페이지: ", 현재페이지);
     $("#pokemonContainer").html('');  // 페이지 변경될 때 마다 기존 데이터 없애기
+
+    // 페이지 번호 변경 설정
+    $("#pageInfo").text(`페이지 ${현재페이지}`);  // .html()도 가능
     
     ids.map((i) => {  // [1,2,3,4,5,6,7,8,9,10]과 같은 걸 ids라는 변수로 만든 것
         $.get(`https://pokeapi.co/api/v2/pokemon/${i}`)
