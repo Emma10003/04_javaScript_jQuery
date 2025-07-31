@@ -17,6 +17,7 @@ $(function(){
     $("#btn6").click(getPosts);
     $("#btn7").click(userList);
     $("#btn8").click(searchUser);
+    $("#btn9").click(selectAlbum);
 })
 // ==================================================================================
 // 문제 1: 기본 텍스트 데이터 가져오기
@@ -242,7 +243,7 @@ function searchUser(){
                                                           추후 소비자가 찾는 이름(searchName)과, user 내에서 name키로 일치하는 값만  (=> user.name == searchName)
                                                           user 변수이름에 담아놓기 설정
                      user.name == searchName            
-            )       
+            )                                           // .map()에서 사용되는 user 변수는 위의 과정으로 searchName과 일치하는 값이 담겨있음.
     */
 
     $.get("https://jsonplaceholder.typicode.com/users")
@@ -259,3 +260,32 @@ function searchUser(){
         } // function
     ) // .done()
 }
+// ==================================================================================
+// 문제 9: 선택된 항목에 따른 데이터 가져오기
+// https://jsonplaceholder.typicode.com/albums/{albumId}/photos?_limit=3
+function selectAlbum(){
+    const albumId = $("#albumId").val();  // 사용자가 선택한 value 값 가져오기
+    $.get(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos?_limit=3`)  // filter 대신 주소에 변수 넣어줌.
+    .done(
+        function(data){
+            $("#result9").html(
+                // data.map 형태로 photo(map 내부 변수이름)를 이용해서
+                // title url을 <strong>${title}</strong> 
+                //             <p>${url}</p>            형태로 가져오기
+
+                // select 선택을 진행할 때 filter를 사용해라 를 만날 수 있음.
+                // 주소값에서 작성된 모든 데이터를 조회할 때는
+                // filter 를 굳이 사용하지 않아도 됨!!!!
+                data.map((photo) => 
+                    `
+                    <strong>${photo.title}</strong>
+                    <p>${photo.url}</p>
+                    `
+                ) // .map()
+            ) // .html()
+        } // function
+    ) // .done()
+} // selectAlbum()
+
+// ==================================================================================
+// 문제 10: 종합 실습
