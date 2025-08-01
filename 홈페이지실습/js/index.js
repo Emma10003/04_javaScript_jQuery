@@ -36,31 +36,41 @@ function loginCheck() {
 
     $("#loginResult").html(`<div class="loading">로그인 중입니다...</div>`);
 
-    if (
-        (username === "admin" && password === "1234") ||
-        (username === "user" && password === "1234")
-    ) {
-        // 1. form-group 숨김처리, loginBtn -> 로그아웃 버튼으로 변경
-        $(".form-group").hide(); // class="form-group"이니까 "#" 아니고 "."
-        $("#loginBtn").hide(); // 로그인 버튼 숨김
-        $("#logoutBtn").show(); // 로그아웃 버튼 보임
-        // $("#loginBtn").text("로그아웃");  // -> 2번 방법을 사용했을 때
+    // $.get()을 이용해서 json 에 해당하는 username과 password가 일치하는지 확인
+    const URL = "../json/userInfo.json";
+    $.get(URL)
+    // function (data) {} 익명함수를 idPwCheck 함수 이름으로 변경 후 done 내부에서 idPwCheck 함수 호출하여 사용
+        .done(function (data) {  // 기능을 굳이 나누지 않고 .done() 안에 작성하는 게 제일 좋다
+            // "admin", "user" 같은 걸 어떻게 변수로 처리하는지 헷갈렸는데
+            // 일치가 아니라 사용자가 입력한 username이 json 파일 안에 존재하는가 여부로 풀면 됨!
+            //  ~> data.users[username] 방식으로 ([]로 인덱싱하는 걸 잊지말자...)
+            if (
+                data.users[username] &&
+                data.users[username].password === password
+            ) {
+                // 1. form-group 숨김처리, loginBtn -> 로그아웃 버튼으로 변경
+                $(".form-group").hide(); // class="form-group"이니까 "#" 아니고 "."
+                $("#loginBtn").hide(); // 로그인 버튼 숨김
+                $("#logoutBtn").show(); // 로그아웃 버튼 보임
+                // $("#loginBtn").text("로그아웃");  // -> 2번 방법을 사용했을 때
 
-        $("#loginResult").html(
-            `
+                $("#loginResult").html(
+                    `
             <div class="success">
                 <p><strong>로그인 성공!</strong></p>
                 <p>${username}님, 환영합니다.</p>
             </div>
             `
-        );
-    } else {
-        $("#loginResult").html(
-            `
+                );
+            } else {
+                $("#loginResult").html(
+                    `
             <div class="error"> 아이디 또는 비밀번호가 일치하지 않습니다.</div>
             `
-        );
-    }
+                );
+            }
+        })
+        .fail();
 }
 
 // 2. 로그아웃 버튼 클릭했을 경우 form-group 보이고 로그인 버튼으로 변경
@@ -77,11 +87,7 @@ function logoutCheck() {
 
     // 로그아웃 메세지 표시
     $("#loginResult").html(
-        `
-        <div class="success">
-            로그아웃이 완료되었습니다.
-        </div>
-        `
+        `<div class="success">로그아웃이 완료되었습니다.</div>`
     );
 
     // 1초 후에 로그아웃 메세지 사라지게 하기 (보통은 0.5~1초 사이로 설정함)
@@ -90,6 +96,10 @@ function logoutCheck() {
         setTimeout(기능, 시간)
     */
     setTimeout(function () {
-        $("#loginResult").html("");  // 메세지 없애기
-    }, 1000);  
+        $("#loginResult").html(""); // 메세지 없애기
+    }, 1000);
+}
+
+function idPwCheck(data) {
+    
 }
