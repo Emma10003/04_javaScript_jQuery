@@ -29,6 +29,12 @@ nav {
     font-weight: bold;
 }
 
+.logo > a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -71,6 +77,8 @@ nav {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    text-align: center;
 }
 
 h1 {
@@ -91,7 +99,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 50%; /* 100% -> 아이디 입력창이 전체 화면을 차지하기 때문에 두 줄이 됨 */
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -200,11 +208,59 @@ img {
 
 .post-item {
     border-bottom: 1px solid #eee;
-    padding: 15px 0;
+    padding: 15px 10px;
+    cursor: pointer;
 }
 
 .post-item:last-child {
     border-bottom: none;
+}
+
+.post-item:hover {
+    background-color: #e8f7ed;
+    border-radius: 5px;
+    padding: 15px 11px;
+}
+
+#postsResult {
+    text-align: left;
+}
+
+#commentResult {
+    text-align: left;
+    border: 1px solid yellowgreen;
+    border-radius: 5px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+#commentResult > h4 {
+    color: #495057;
+    font-size: 13px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 5px;
+}
+
+#commentResult .comment-email {
+    font-weight: lighter;
+    font-size: 13px;
+    color: #008bff;
+    margin-bottom: 10px;
+}
+
+#commentResult .comment-body {
+    font-size: 16px;
+    color: #6c757d;
+    margin-bottom: 5px;
+    line-height: 1.6;
 }
 
 /* 갤러리 */
