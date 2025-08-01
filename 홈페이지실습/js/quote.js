@@ -25,6 +25,7 @@ function getQuote() {
                     <div class="quote-box">
                         <br>
                         <h3> ${data.content} </h3>
+                        <br>
                         <p> - ${data.author} - </p>
                         <br>
                     </div>
