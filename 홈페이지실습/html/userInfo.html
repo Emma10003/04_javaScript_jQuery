@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>오늘의 명언</title>
+        <title>사용자 정보</title>
         <script
             src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -21,10 +21,10 @@
                     <li class="nav-item">
                         <a href="index.html" class="nav-link">로그인</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a href="quote.html" class="nav-link">오늘의 명언</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a href="userInfo.html" class="nav-link">유저 정보</a>
                     </li>
                     <li class="nav-item">
@@ -36,17 +36,15 @@
                 </ul>
             </div>
         </nav>
-
         <div class="container">
-            <h1>오늘의 명언</h1>
-            <p>
-                당신의 운세는... 버튼을 클릭해서 랜덤한 영어 명언을 가져오세요!
-            </p>
-            <p>영어 공부와 명언까지 1석2조!</p>
-            <button id="getQuote">오늘의 명언</button>
-            <div id="quoteResult" class="result"></div>
+            <h1>사용자 정보</h1>
+            <p>사용자 이름을 클릭하면 상세정보를 확인할 수 있습니다.</p>
+            <br>
+            <div class="user-card" id="usersList"></div>
+
+            <div class="result" id="userResult"></div>
         </div>
 
-        <script src="../js/quote.js"></script>
+        <script src="../js/userInfo.js"></script>
     </body>
 </html>
