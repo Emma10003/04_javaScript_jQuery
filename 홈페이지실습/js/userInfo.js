@@ -22,13 +22,16 @@ function getUsers() {
                     해당하는 유저의 id 값을 getUserDetail() 내부 매개변수 값으로 전달하고,
                     해당하는 유저의 정보를 확인할 수 있도록 설정
             
-            userList 라는 변수이름 대신 직접적으로 $("#usersList").html() 내부 안에 
-                data.map() 형태를 사용할 수 있지만,
-                코드의 가독성을 위하여 변수 이름에 담아서 보여질 결과를 분리하여 사용하기도 함.
+            const userList = data.map()
+                :   userList 라는 변수이름 대신 직접적으로 $("#usersList").html() 내부 안에 
+                    data.map() 형태를 사용할 수 있지만,
+                    코드의 가독성을 위하여 변수 이름에 담아서 보여질 결과를 분리하여 사용하기도 함.
         
             getUserDetail(${user.id}) 에서 ${user.id}를 쓴 이유는
                 해당 api 사이트에서 주소 뒤에 각 유저에게 주어진 id 숫자를 입력하면
                 해당 유저의 정보가 담긴 주소로 이동하기 때문
+                (getUserDetail() 함수 내부를 보면 api 주소에 ${userId}로 포맷팅 되어 있음!)
+                    (여기서 ${userId}는 함수 파라미터)
         
         */
         const userList = data

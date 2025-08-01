@@ -185,7 +185,7 @@ button:hover {
     배경색 #f8f9fa
     text-decoration 없음
     */
-    color:#007bff;
+    color: #007bff;
     background-color: #f8f9fa;
     text-decoration: none;
 }
@@ -205,4 +205,46 @@ img {
 
 .post-item:last-child {
     border-bottom: none;
+}
+
+/* 갤러리 */
+
+#dogResult {
+    cursor: pointer;
+}
+
+.cat-card {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+}
+
+.cat-detail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.cat-modal {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cat-detail-show {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
