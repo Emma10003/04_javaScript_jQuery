@@ -1,0 +1,18 @@
+* {
+    text-align: center;
+}
+
+.container {
+    border: #eeeeee;
+    border-radius: 10px;
+}
+
+button {
+    cursor: pointer;
+    background: #ffdc90;
+    margin: 8px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+}
