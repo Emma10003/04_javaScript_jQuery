@@ -1,5 +1,6 @@
 $(function () {
     showUsers();
+    $("#clear-all").click(deleteUsers);
 });
 
 function showUsers() {
@@ -22,4 +23,16 @@ function showUsers() {
 
     // userHTML에 안에 넣은 내용 user-list 에 출력하기.
     $("#user-list").html(userHTML);
+}
+
+function deleteUsers(e) {
+    // 클릭 이벤트가 있을 때 작동하는 함수이므로 이벤트 변수인 e 있어야 함.
+    e.preventDefault();
+
+    if (confirm("모든 회원정보를 삭제하시겠습니까?")) {
+        // 확인
+        localStorage.removeItem("userList");
+        alert("모든 회원정보가 삭제되었습니다.");
+        location.reload();
+    }
 }
