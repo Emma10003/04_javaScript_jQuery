@@ -48,7 +48,7 @@ function deleteProducts(e) {
     // prompt : 입력창과 확인 버튼
     // confirm : 확인 취소 버튼     확인 = true  /  취소 = false
     if (confirm("정말 모든 제품을 삭제하시겠습니까?")) {
-        // confirm에서 확인을 눌렀을 경우
+        // confirm에서 확인을 눌렀을 경우 (== true)
         // localStorage 에서 productList 에서 데이터만 제거
         localStorage.removeItem("productList");
 

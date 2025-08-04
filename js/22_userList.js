@@ -3,6 +3,7 @@ $(function () {
     $("#clear-all").click(deleteUsers);
 });
 
+// 사용자 목록 보여주기 함수
 function showUsers() {
     // 기존 회원목록 가져오기 (없으면 빈 배열 형태) -> 가져온 값을 userList 변수이름에 담아두기
     let userList = JSON.parse(localStorage.getItem("userList") || "[]");
@@ -25,12 +26,13 @@ function showUsers() {
     $("#user-list").html(userHTML);
 }
 
+// 모든 회원정보 삭제 함수
 function deleteUsers(e) {
     // 클릭 이벤트가 있을 때 작동하는 함수이므로 이벤트 변수인 e 있어야 함.
     e.preventDefault();
 
     if (confirm("모든 회원정보를 삭제하시겠습니까?")) {
-        // 확인
+        // 확인(==true)
         localStorage.removeItem("userList");
         alert("모든 회원정보가 삭제되었습니다.");
         location.reload();
