@@ -2,7 +2,7 @@ $(function () {
     $("a").click(signUp);
 });
 
-function signUp() {
+function signUp(e) {
     e.preventDefault(); // 기본 링크 동작 방지
     // 제출하기 일시 정지 상태
     // 아래 정규식, 데이터 저장 여부 등과 같은 규정을
