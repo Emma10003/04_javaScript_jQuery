@@ -1,6 +1,6 @@
 $(function () {
     showUsers();
-    $("#clear-all").click(deleteUsers);
+    $("#clear-all").click(deleteAllUsers);
 });
 
 // 사용자 목록 보여주기 함수
@@ -27,7 +27,7 @@ function showUsers() {
 }
 
 // 모든 회원정보 삭제 함수
-function deleteUsers(e) {
+function deleteAllUsers(e) {
     // 클릭 이벤트가 있을 때 작동하는 함수이므로 이벤트 변수인 e 있어야 함.
     e.preventDefault();
 
