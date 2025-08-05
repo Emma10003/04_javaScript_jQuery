@@ -1,6 +1,8 @@
 $(function () {
     $("#saveData").click(saveDataFn);
     $("#getBtn").click(getDataFn);
+    $("#showAllBtn").click(showAllDataFn);
+    $("#clearAllBtn").click(clearAllDataFn);
 });
 
 /*
@@ -72,3 +74,44 @@ function getDataFn(e) {
 }
 
 /* 3️⃣ 데이터 가져오기 */
+/* 
+    키의 이름을 가져올 때는 index 번호를 활용해서 0번째에 존재하는 key 명칭을 가져온다. 
+    가져온 키의 명칭을 활용해서 값을 가져올 수 있다.
+
+    getkey   : index 번호
+    getvalue : key의 명칭
+    set 저장할 때는 순차적으로 0번부터 저장
+
+    for문 보다 localStorage에 리스트 목록을 저장하는 것이 메모리 사용 면에서 효율적
+    -> 그래서 localStorage에 데이터를 저장할 때 배열, 리스트 형태로 저장.
+*/
+function showAllDataFn(e) {
+    e.preventDefault();
+
+    // 키와 값을 배열에 넣지 않았기 때문에 .map()은 쓸 수 X -> for문 사용
+    let html = `<h3>크롬 브라우저에 저장된 데이터들 확인</h3><ul>`;
+    for (let i = 0; i < localStorage.length; i++) {
+        // localStorage에 저장된 키 값을 차례대로 key 변수에 저장
+        const key = localStorage.key(i);
+        // 반복문을 돌면서 li 태그를 html 변수에 추가
+        html += `<li>
+            <strong>${key}</strong>: 
+            ${localStorage.getItem(key)}
+        </li>
+        `;
+    }
+    // ul태그 닫아줌
+    html += `<ul>`;
+
+    $("#allData").html(html);
+}
+
+function clearAllDataFn(e) {
+    e.preventDefault();
+
+    if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+        localStorage.clear();
+    }
+
+    showAllDataFn(); // 삭제한 뒤의 목록 보여주기
+}
