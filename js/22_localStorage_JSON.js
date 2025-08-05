@@ -54,6 +54,13 @@ function addData(e) {
                 문자열은 허용했기 때문에 문자열만 가능!
                 따라서 JSON.stringify()를 이용해 배열을 문자열로 변환
     */
+
+    // 그냥 내가 추가한 코드 -------------
+    $("#name").val(""); // 입력창 초기화
+    $("#age").val("");
+    $("#email").val("");
+    $("#name").focus(); // 커서 포커스 name input에 맞추기
+    // ----------------------------------
     alert("로컬스토리지에 저장되었습니다.");
 }
 
@@ -65,8 +72,47 @@ function searchData(e) {
 /* 3️⃣ 현재 저장된 모든 데이터 */
 function showAllData(e) {
     e.preventDefault();
+
+    // localStorage에서 저장된 유저 목록 가져오기
+    let userList = JSON.parse(localStorage.getItem("userList") || "[]");
+    console.log("유저 목록: ", userList);
+
+    let html = `<h3>저장된 사용자 목록(총 ${userList.length}명)</h3>`;
+
+    // for문을 사용하되, userList 값을 모두 [i]로 가져올 것!
+    for (let i = 0; i < userList.length; i++) {
+        html += `
+        ${i + 1} ---------------------------------<br>
+        ${userList[i].name}님<br>
+        ${userList[i].age}세<br>
+        ${userList[i].email}<br>
+        가입일자 : ${userList[i].createAt}<br>
+        ----------------------------------------<br>
+        `;
+        /*
+            리스트로 저장되어 있는 하나의 변수(userList) 안에서
+            n번째 사용자의 name, age, email을 가져오기 위해서
+            i로 인덱싱 후 키 값으로 호출하는 것.
+            -> userList[i].name
+            
+            앞으로는 이런 식으로 계속 쓸 예정!!
+        */
+    }
+    $("#allData").html(html);
 }
 
 function clearAllData(e) {
     e.preventDefault();
+
+    // 정말로 사용자를 삭제하시겠습니까 물어본 후
+    // userList를 []로 만들기
+    if (confirm("정말로 사용자를 삭제하시겠습니까?")) {
+        localStorage.clear();
+        alert("모든 데이터가 삭제되었습니다.");
+        // showAllData();
+        /*
+        localStorage.removeItem("userList"); -> localStorage 내에서 특정 키만 삭제
+        localStorage.clear();                -> localStorage 내부에 존재하는 모~~~든 데이터 삭제
+        */
+    }
 }
