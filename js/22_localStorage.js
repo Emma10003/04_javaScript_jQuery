@@ -113,5 +113,5 @@ function clearAllDataFn(e) {
         localStorage.clear();
     }
 
-    showAllDataFn(); // 삭제한 뒤의 목록 보여주기
+    showAllDataFn(); // 삭제한 뒤의 목록 보여주기   
 }
