@@ -33,6 +33,11 @@ function signUpFn() {
         return;
     }
 
+    if (!(username || email || password || confirmPassword)) {
+        $("#errorMessage").html("모든 항목을 입력해주세요.").show();
+        return;
+    }
+
     const newUser = {
         username: username,
         email: email,
