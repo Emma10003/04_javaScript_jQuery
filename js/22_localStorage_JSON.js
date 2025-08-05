@@ -67,6 +67,34 @@ function addData(e) {
 /* 2️⃣ 데이터 검색하기 */
 function searchData(e) {
     e.preventDefault();
+    const searchValue = $("#searchValue").val().trim();
+
+    let userList = JSON.parse(localStorage.getItem("userList") || "[]");
+
+    // 배열 내부에 검색한 값이 존재하는가?
+    const searchResult = userList.filter((data) => data.name === searchValue);
+    // searchValue가 data.name 과 일치하는 값만 data 변수에 담음
+
+    let html = `<h3>검색결과</h3>`;
+    if (searchResult.length > 0) {
+        // 일치하는 값이 있는 경우) 검색결과를 보여줌
+        html += searchResult
+            .map(
+                (data) => `
+            <div class="item-row">
+                <strong>${data.name}님</strong><br>
+                나이: ${data.age}<br>
+                이메일: ${data.email}<br>
+                가입일자: ${data.createAt}<br>
+            </div>
+            `
+            )
+            .join("");
+    } else {
+        html += `존재하지 않는 회원입니다.`;
+    }
+
+    $("#searchResult").html(html);
 }
 
 /* 3️⃣ 현재 저장된 모든 데이터 */
