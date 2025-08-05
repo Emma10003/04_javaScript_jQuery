@@ -41,16 +41,6 @@ function displayMovies(movies) {
     $(".movies").html(movieCard);
 }
 
-// 로그인 팝업 열기
-function openLoginPopup() {
-    window.open("login.html", "_blank", "width=450,height=600");
-}
-
-// 회원가입 페이지로 이동
-function goToSignup() {
-    window.location.href = "register.html";
-}
-
 // 상세페이지로 이동
 function goToDetail(movieId){
     /*
@@ -64,3 +54,14 @@ function goToDetail(movieId){
     */
     window.location.href = `detail.html?id=${movieId}`
 }
+
+// 로그인 팝업 열기
+function openLoginPopup() {
+    window.open("login.html", "_blank", "width=450,height=600");
+}
+
+// 회원가입 페이지로 이동
+function goToSignup() {
+    window.location.href = "register.html";
+}
+
