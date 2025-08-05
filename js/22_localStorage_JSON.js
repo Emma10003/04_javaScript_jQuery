@@ -73,16 +73,38 @@ function searchData(e) {
 
     // 배열 내부에 검색한 값이 존재하는가?
     const searchResult = userList.filter((data) => data.name === searchValue);
-    // searchValue가 data.name 과 일치하는 값만 data 변수에 담음
+    // filter를 이용해서 searchValue가 data.name과 일치하는 값만 data 변수에 담음
+    /*
+        userList.filter((data) => data.name === searchValue)
+        userList 에서 전달받은 목록 중에서
+        .filter() : 걸러낼 것이다
+        data      : data라는 변수이름에 userList 에서 가져온 정보를 하나씩 담아서
+        data.name === searchValue : data 내부에 이름과 소비자가 검색한 valuer 가 일치하는 것만
+        searchResult 변수이름에 담고 있겠다.
+
+        ∴ userList를 data로 받은 뒤, 목록 안의 요소{}를 하나씩 꺼내어 
+          그 안의 이름(name)이 소비자가 입력한 값(searchValue)과 일치하는 것만
+          걸러내서(filter) searchResult에 담겠다
+        
+    */
 
     let html = `<h3>검색결과</h3>`;
     if (searchResult.length > 0) {
         // 일치하는 값이 있는 경우) 검색결과를 보여줌
+        /*
+            filter 내부에 작성된 data는 filter 내에서 소비자가 검색한 데이터와
+            일치하는지 확인하기 위해 사용
+
+            map 내부에 작성된 data는 검색완료된 유저목록을 
+            하나씩 꺼내서 소비자에게 걸러낸 결과값을 보여주기 위해 활용되는 변수이름
+        */
+       // searchResult의 값을 하나씩 꺼내서 아래 html코드를 적용해 줄 것이기 때문에
+       // searchResult.map() 으로 작성
         html += searchResult
             .map(
                 (data) => `
             <div class="item-row">
-                <strong>${data.name}님</strong><br>
+                <strong>${data.name}님</strong>
                 나이: ${data.age}<br>
                 이메일: ${data.email}<br>
                 가입일자: ${data.createAt}<br>

@@ -47,6 +47,37 @@ function addFoodData(e) {
 /* 2️⃣ 음식 검색하기 */
 function searchFoodData(e) {
     e.preventDefault();
+
+    const searchValue = $("#searchValue").val().trim();
+    let foodList = JSON.parse(localStorage.getItem("foodList") || "[]");
+
+    // 검색결과가 존재할 경우 검색결과 보여주기
+    const searchFoodDatas = foodList.filter(
+        (food) => food.foodName === searchValue
+    );
+
+    let html = `<h3>검색결과</h3>`;
+    if (searchFoodDatas.length > 0) {
+        html += searchFoodDatas
+            .map(
+                (data) =>
+                    `
+                <div class="item-row">
+                    <div>
+                    <strong>🍽️ ${data.foodName}</strong><br>
+                    💰 가격: ${data.price}원<br>
+                    📂 카테고리: ${data.category}<br>
+                    📅 등록일: ${data.createAt}
+                    </div>
+                </div>
+                `
+            )
+            .join("");
+    } else {
+        html += `존재하지 않는 음식입니다.`;
+    }
+
+    $("#searchResult").html(html).show(); // css에서 display:none으로 숨겨져 있는 걸 보이게 함.
 }
 
 /* 3️⃣ 저장된 모든 음식 데이터 */
@@ -76,7 +107,7 @@ function showAllFoodData(e) {
     let foodList = JSON.parse(localStorage.getItem("foodList") || "[]");
     // -> 위의 형태는 if-else를 쓰지 않고 코드 한 줄로 가져오기 위해서 사용하는 방식
 
-    let html = `<h3>🍽️ 저장된 음식 목록 (총 ${foodList.length}}개)</h3>`; // const 로 선언하면 에러 발생!
+    let html = `<h3>🍽️ 저장된 음식 목록 (총 ${foodList.length}개)</h3>`; // const 로 선언하면 에러 발생!
     for (let i = 0; i < foodList.length; i++) {
         html += `
             <div class="item-row">
