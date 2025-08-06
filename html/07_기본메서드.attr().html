@@ -51,7 +51,7 @@
         </div>
         <!----------------------------------------------------------------------------->
         <div class="container attrDiv">
-            <h1>.attr() 메서드</h1>
+            <h2>jQuery .attr() 메서드</h2>
             <pre>
 HTML 요소의 속성(attribute)을 조작하는 메서드(기능 = 함수 = 행동)
 주로 &lt;a&gt; 태그나 &lt;img&gt; 태그에 많이 사용하나
@@ -65,6 +65,26 @@ $("선택자").attr("속성명", "값");
 
 3. 여러 속성 동시 설정
 $("선택자").attr("속성명1", "값1").attr("속성명2", "값2");
+
+4. 속성 제거
+$("선택자").removeAttr("속성명1");
+
+            </pre>
+
+            <h2>기본 javaScript attr 속성</h2>
+            <pre>
+1. 속성값 가져오기 : .getAttribute()
+document.querySelector("선택자").getAttribute("속성명");
+
+2. 속성값 설정하기 : .setAttribute()
+document.querySelector("선택자").setAttribute("속성명", "값");
+
+3. 여러 속성 동시 설정
+document.querySelector("선택자").setAttribute("속성명1", "값1").setAttribute("속성명2", "값2");
+
+4. 속성 제거
+document.querySelector("선택자").removeAttribute("속성명", "값");
+document.querySelector("선택자").removeAttribute("속성명");
             </pre>
         </div>
 

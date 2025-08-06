@@ -1,4 +1,6 @@
 $(function () {
+    $(".attrDiv").attr("style", "margin-top:10px");
+
     // 1. 이미지 속성 변경
     $("#changeImage").click(imgFn);
     $("#changeAlt").click(altFn);
@@ -94,5 +96,6 @@ function setFn(e) {
 function getFn(e) {
     e.preventDefault();
     const dataId = $("#dataElement").attr("data-id");
-    alert("data-id : ", dataId || "없음");
+    alert("data-id : " + dataId || "없음");
+    // 문자열이랑 변수를 콤마(,)로 연결하면 안 나오고, 덧셈기호(+)로 연결하면 나옴
 }

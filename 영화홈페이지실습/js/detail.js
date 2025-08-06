@@ -11,6 +11,7 @@ $(function () {
     -> 현재는 window.location.search 에서 가져온다.
     window          . location         . search
     현재 컴퓨터에서  . 현재 주소 위치에서 . 검색한다음
+    (= detail.html 의 주소; http://127.0.0.1:5500/04_JQuery/html/detail.html?id=2baf70d1-42bb-4437-b551-e5fed5a87abe)
 
     .get("?뒤에 작성된 키 이름")
             키 명칭을 가져올 것이다. 키 명칭을 가져와서 키 명칭 내부 안에 작성된 값을 

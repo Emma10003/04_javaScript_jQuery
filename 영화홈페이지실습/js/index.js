@@ -30,7 +30,7 @@ function displayMovies(movies) {
                         <p><strong>제작자:</strong> ${movie.producer}</p>
                         <p>
                             <span class="detail-link" onclick="goToDetail('${movie.id}')">
-                                ${movie.description.substring(0,100) + "...상세보기"}
+                                ${movie.description.substring(0,50) + "...상세보기"}
                             </span>
                         </p>
                         <img src="${movie.image}" style="max-width:100%;">
