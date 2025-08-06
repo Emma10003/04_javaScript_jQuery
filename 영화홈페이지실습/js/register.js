@@ -83,7 +83,7 @@ function signup() {
             Uncaught TypeError: Failed to execute 'setItem' on 'Storage':
             2 arguments required, but only 1 present
             : setItem() 내부 파라미터(=매개변수) 2개가 들어가야 하는데 오직 하나만 들어갔습니다.
-                그래서 크롬 storage 저장한느데 문제가 발생했습니다.
+                그래서 크롬 storage에 저장하는 데 문제가 발생했습니다.
     */
     localStorage.setItem("movieUserList", JSON.stringify(users));
     alert("회원가입이 완료되었습니다.");
