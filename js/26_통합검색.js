@@ -8,14 +8,13 @@ $(function () {
     $("#searchBtn").click(searchFn);
 
     // 엔터키 검색 추가
-    $("#searchInput").keypress(
-        function(e){ // Enter 는 위치로 13번째 위치
-            //          -> if(e.which === 13) { 으로 작성 가능
-            if(e.key === "Enter") {
-                searchFn
-            }
+    $("#searchInput").keypress(function (e) {
+        // Enter 는 위치로 13번째 위치
+        //          -> if(e.which === 13) { 으로 작성 가능
+        if (e.key === "Enter") {
+            searchFn();
         }
-    )
+    });
 
     // 실시간 검색 기능 추가
     $("#searchInput").on("input", searchFn);
